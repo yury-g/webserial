@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- 
+  ==========================================================================
+  PulseSensor WebSerial A/B Lab
+  UI Engine Version: 2.1.0 | Revision Timestamp: 2026-05-22 15:00 EDT
+  --------------------------------------------------------------------------
+  Features:
+  - Real-Time Dual PPG Overlap Chart (Cyan Ch A / Green Ch B)
+  - A/B Beat Timing Ladder (Infographic of Agree / Drift / Solo states)
+  - Beat Timing Microscope (Sub-millisecond delta IBI magnified scale)
+  - Private Correlation Pad (Green / IR amplitude ratio and event markers)
+  ==========================================================================
+-->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IR + Green PPG Private Lab</title>
 <style>
+  /* ==========================================================================
+     UI DESIGN SYSTEM & CORE STYLING
+     Revision Timestamp: 2026-05-22 15:00 EDT
+     ========================================================================== */
   :root {
     --bg: #050706;
     --panel: #101413;
@@ -532,7 +548,12 @@
 </style>
 </head>
 <body>
+<!-- ==========================================================================
+     UI COMPONENT LAYOUT
+     Revision Timestamp: 2026-05-22 15:00 EDT
+     ========================================================================== -->
 <div class="app">
+  <!-- [UI Section: Header Toolbar] Controls serial connections & time windows -->
   <header>
     <div>
       <h1>IR + Green PPG Private Lab</h1>
@@ -560,7 +581,9 @@
   <div id="unsupported" class="unsupported">Web Serial needs Chrome, Edge, or Brave on a secure page such as localhost or HTTPS.</div>
 
   <main>
+    <!-- [UI Column: Visual Graph Panels (Left)] -->
     <section class="left">
+      <!-- [UI Panel: Live PPG Relationship (Raw Overlaps)] - Rev: 2026-05-22 -->
       <section class="panel">
         <div class="panel-title">
           <span>Live PPG Relationship</span>
@@ -575,6 +598,7 @@
         </div>
       </section>
 
+      <!-- [UI Panel: A/B Beat Timing Ladder / Infographic] - Rev: 2026-05-22 -->
       <section class="panel">
         <div class="panel-title">
           <span>Pulse Agreement History</span>
@@ -598,7 +622,9 @@
       </section>
     </section>
 
+    <!-- [UI Column: Quantitative Readouts (Right)] -->
     <section class="right">
+      <!-- [UI Group: Digital Heartrate/PPG Scores] - Rev: 2026-05-22 -->
       <section class="score-grid">
         <div class="panel sensor a">
           <div class="sensor-head"><span>IR GPIO35</span><span id="aLock">search</span></div>
@@ -623,6 +649,7 @@
         </div>
       </section>
 
+      <!-- [UI Panel: Dynamic Verdict Banner] - Rev: 2026-05-22 -->
       <section class="panel verdict">
         <div id="winner" class="winner">--</div>
         <div class="verdict-copy">
@@ -631,6 +658,7 @@
         </div>
       </section>
 
+      <!-- [UI Panel: G/IR Amplitude Ratio Trend] - Rev: 2026-05-22 -->
       <section class="panel ratio-panel">
         <div class="ratio-head">
           <div id="ratioValue" class="ratio-value">--</div>
@@ -654,6 +682,7 @@
         <div id="ratioCopy" class="ibi-copy">G/IR is green amplitude divided by IR amplitude. Treat it as an exploratory trend only.</div>
       </section>
 
+      <!-- [UI Panel: Beat Timing Microscope (Delta-IBI scale)] - Rev: 2026-05-22 -->
       <section class="panel ibi-panel">
         <div class="ibi-readout">
           <div>
@@ -1037,6 +1066,12 @@ function setupCanvas(canvas) {
   return { ctx, w: rect.width, h: rect.height };
 }
 
+/* ==========================================================================
+   CANVAS RENDERERS & LAYOUT ROUTINES
+   Revision Timestamp: 2026-05-22 15:00 EDT
+   ========================================================================== */
+
+// Renders overlapping raw ADC traces for Ch A (GPIO35) and Ch B (GPIO27)
 function drawRaw() {
   const { ctx, w, h } = setupCanvas(els.rawCanvas);
   const points = visiblePoints();
@@ -1053,6 +1088,7 @@ function drawRaw() {
   drawOverlap(ctx, points, w, h);
 }
 
+// Renders the BPM trend lines and A/B Beat Timing Ladder (connector infographic) - Rev: 2026-05-22
 function drawTrend() {
   const { ctx, w, h } = setupCanvas(els.trendCanvas);
   const points = visiblePoints();
@@ -1082,6 +1118,7 @@ function drawTrend() {
   drawTimingAgreement(ctx, points, w, lane);
 }
 
+// Renders G/IR amplitude ratio trend with user session markers - Rev: 2026-05-22
 function drawRatioTrend() {
   const { ctx, w, h } = setupCanvas(els.ratioCanvas);
   const points = visiblePoints();

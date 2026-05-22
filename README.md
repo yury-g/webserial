@@ -82,3 +82,20 @@ AB,t,aSample,aBpm,aIbi,aQuality,aBeats,aAmp,aRange,aLocked,aBeat,bSample,bBpm,bI
 4.  **Publishing Workflow:** 
     *   Development takes place here: `github.com/yury-g/webserial`
     *   When stable, publication is released to: `github.com/WorldFamousElectronics` (either as a new repository or embedded in `PulseSensor_CYD`).
+
+---
+
+## 📅 UI Changelog & Evolution History
+
+*   **2026-05-22 15:00 EDT**
+    *   **Timestamped Code Comments:** Annotated all core layout blocks and canvas render routines directly within the HTML/JS source code (`webserial.html` / `index.html`).
+    *   **Interface Gallery Release:** Embedded high-fidelity visual diagrams (raw comparator waveforms, A/B beat timing ladder, and delta-IBI microscope) into the `README.md`.
+*   **2026-05-19 14:54 EDT**
+    *   **Telemetry Event Logging:** Introduced manual session markers (`REST`, `HOLD`, `MOVE`, `NOTE`) and custom ratio inputs plotting directly to the G/IR pad.
+*   **2026-05-19 14:04 EDT**
+    *   **A/B Beat Ladder:** Replaced standard timing charts with an A/B beat ladder infographic showing color-coded event connections (agree, drift, solo).
+*   **2026-05-19 13:19 EDT**
+    *   **Microscope Widget:** Added the sub-millisecond magnified delta-IBI timing microscope to track micro-variations.
+*   **2026-05-19 13:04 EDT**
+    *   **Shared Raw Waveforms:** Merged separate sensor plots into a single, shared-scale (0-1023) dual-channel comparator chart.
+
