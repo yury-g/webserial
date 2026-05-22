@@ -6,6 +6,25 @@ This project is linked directly to the official tutorial page: [pulsesensor.com/
 
 ---
 
+## 🎨 Interface Gallery
+
+### 1. Live Waveform Analysis (Comparator Dashboard)
+The primary layout features real-time PPG waveform overlays, comparing Channel A (cyan) and Channel B (green) raw signals alongside calculated beats-per-minute (BPM) and inter-beat intervals (IBI).
+
+![Live Waveform Analysis](docs/screenshots/comparator-dashboard.png)
+
+### 2. A/B Beat Timing Ladder (Infographic Chart)
+The timing ladder evaluates heart beat event alignment across channels. It displays synchronization state, drift, and solo beats (potential false positives).
+
+![A/B Beat Timing Ladder](docs/screenshots/beat-ladder.png)
+
+### 3. Beat Timing Microscope
+A high-resolution diagnostic panel displaying sub-millisecond delays between the detectors.
+
+![Beat Timing Microscope](docs/screenshots/timing-microscope.png)
+
+---
+
 ## 🚀 Key Features
 
 *   **Zero-Install USB Telemetry:** Uses the browser-native Web Serial API (available in Chrome, Edge, and Brave) to open a raw USB serial port and plot data in real time.
